@@ -1,0 +1,19 @@
+name: extreme-heat
+channels: [conda-forge]
+dependencies:
+  - python=3.11
+  - numpy
+  - pandas
+  - xarray
+  - dask
+  - netcdf4
+  - zarr
+  - scipy
+  - matplotlib
+  - cartopy
+  - cftime
+  - bottleneck
+  - jupyterlab
+  - pip
+  - pip:
+      - pooch

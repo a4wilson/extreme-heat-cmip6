@@ -1,9 +1,7 @@
 # Disproportionate Warming of Extreme Land Surface Temperatures in CMIP6 
 Models
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.xxxxxxx.svg)](https://doi.org/10.5281/zenodo.xxxxxxx)  
-*(Replace with your Zenodo DOI once minted; remove badge if you skip 
-Zenodo)*
+[![DOI](https://doi.org/10.5281/zenodo.17009316)]
 
 ---
 

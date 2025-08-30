@@ -1,0 +1,10 @@
+data/
+*.nc
+*.zarr
+*.grib
+*.h5
+*.parquet
+*.csv
+.ipynb_checkpoints/
+.DS_Store
+figures/cache/

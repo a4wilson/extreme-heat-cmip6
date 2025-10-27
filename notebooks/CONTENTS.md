@@ -31,7 +31,7 @@ This repository organizes the notebooks and scripts used to preprocess data, com
 
 ## Reproducing Figures (examples)  
 - **Where do hottest heatwaves occur:** `SpatialMetrics.ipynb`
-- **? How well do CMIP6 models capture the magnitude, spatial distribution, and evolution of these extremes under both gradual (SSP2-4.5) and abrupt (e.g., abrupt 4×CO2 forcing:** `Temperature_Trends.ipynb` 
+- **How well do CMIP6 models capture the magnitude, spatial distribution, and evolution of these extremes under both gradual (SSP2-4.5) and abrupt (e.g., abrupt 4×CO2 forcing:** `Temperature_Trends.ipynb` 
 - **How frequently do these extreme temperatures recur, and does their frequency scale linearly or accelerate with global warming:** `add_S95_full_colab.ipynb`  
 - **Model metrics table:** `SpatialMetrics.ipynb`
 

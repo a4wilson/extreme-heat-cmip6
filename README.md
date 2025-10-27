@@ -1,5 +1,5 @@
-# Disproportionate Warming of Extreme Land Surface Temperatures in CMIP6 
-Models
+# Projections of Earth’s Hottest Surface Temperatures in CMIP6 
+
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17009316.svg)](https://doi.org/10.5281/zenodo.17009316)
 
@@ -8,8 +8,8 @@ Models
 ## 📖 Overview
 This repository contains the code and analysis supporting the article:
 
-> **Wilson, A., Lutsko, N., & Miller, A. (2025). Disproportionate Warming 
-of Extreme Land Surface Temperatures in CMIP6 Models. _Geophysical 
+> **Wilson, A., Lutsko, N., & Miller, A. (2025). Projections of Earth’s Hottest Surface Temperatures in
+CMIP6._Geophysical 
 Research Letters._**  (prep)
 
 ### Description

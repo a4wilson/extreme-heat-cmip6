@@ -22,10 +22,14 @@ Dangerously hot days increase much faster than average warming on land. Looking 
 
 ## 📂 Repository structure
 
-├── notebooks/ # Jupyter notebooks for reproducing figures and analysis
-├── scripts/ # Helper scripts for preprocessing and regridding
-├── figures/ # Figures included in the GRL article
-├── environment.yml # Conda environment file with dependencies
+├── notebooks/
+# Jupyter notebooks for reproducing figures and analysis
+├── scripts/ 
+# Helper scripts for preprocessing and regridding
+├── figures/ 
+# Figures included in the GRL article
+├── environment.yml 
+# Conda environment file with dependencies
 ├── LICENSE
 └── README.md
 

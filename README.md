@@ -13,10 +13,46 @@ CMIP6._Geophysical
 Research Letters._**  (prep)
 
 ### Description
-We assess how extreme land surface temperatures evolve through the 21st century using output from 24 CMIP6 models. Our primary metric is the annual maximum of daily maximum temperature (TDX), evaluated against Berkeley Earth and ERA5 for spatial fidelity, mean bias, RMSE, and record-setting behavior. Models consistently show faster warming of hot extremes than of mean land temperatures. In the tropics (20°S–20°N), ΔTx increases with percentile, with the multi-model scaling factor Sx =ΔTx/ΔT, Sx = ΔTx/ΔT rising from ~1.0 at the median to ~1.25–1.30 at the 99th percentile; oceans show weaker amplification (~1.05–1.12 at the 99th). A Poisson GLM fitted to global land‐day exceedances indicates ~1.58× more hot-day incidence per +1 °C of global warming. For a 40 °C absolute threshold (example: GFDL-ESM4), the fraction of land experiencing ≥1 exceedance per year rises from ~8–9% historically to ~13–14% by 2100, with mean exceedance days increasing from ~2.8 yr⁻¹ (1980–2014) to ~4.7 yr⁻¹ (2040–2059) and ~6.1 yr⁻¹ (2081–2100). Spatial skill varies across models: the multi-model mean achieves RMSE ≈ 2.63 °C, near-zero mean bias, and spatial R2, R2 ≈ 0.84, while individual models span wide performance ranges. Regions with recurring late-century records are concentrated in South Asia, East Africa, the Middle East, and parts of Australia, though the intensity and footprint are model-dependent. Overall, both the magnitude of extreme-heat amplification and the realism of regional patterns differ substantially across models.
+Extreme land surface temperatures threaten health, infrastructure, and
+ecosystems. Using the annual maximum of daily maximum temperature ($T_{DX}$)
+from 23 CMIP6 models, we examine how hot extremes evolve under SSP2-4.5 and
+abrupt 4$\times$CO$_2$ forcing, and how well models reproduce observed
+patterns. In both transient and equilibrium simulations, indices that emphasise
+hotter conditions---especially $T_{DX}$---warm more strongly than tropical-mean
+land temperature, indicating intensification of extremes relative to the mean
+state.
+
+Comparing historical $T_{DX}$ to Berkeley Earth over land, we find substantial
+inter-model spread in spatial bias, RMSE, and pattern correlation, with the
+largest errors in tropical and semi-arid regions. We also track the location
+and recurrence of the hottest land grid cell each year. Record-setting heat
+becomes increasingly concentrated over South Asia, East Africa, and the Middle
+East, while models with similar mean warming show diverse record frequencies.
+This underscores the need to evaluate extremes explicitly, rather than relying
+on mean warming alone.
 
 ### Plain Language Summary
-Dangerously hot days increase much faster than average warming on land. Looking across 24 climate models, the hottest daytime temperatures each year warm ~25–30% faster than the average in the tropics, while ocean hot days grow more slowly. A simple statistical model shows that every extra 1 °C of global warming leads to about 1.6 times more hot-day occurrences. For a concrete threshold (40 °C), the share of global land with at least one such day each year climbs from under 10% in recent decades to roughly one in seven land areas by late century, and the average number of 40 °C days per year roughly doubles from historical levels to late century. Late-century record-setting heat concentrates in South Asia, East Africa, the Middle East, and (in several models) Australia. While many models reproduce where extremes occur reasonably well on average, some do much better than others; this model spread matters for planning. The key message is that extreme heat intensifies faster than mean warming and is unevenly distributed, so understanding where models place the strongest extremes is essential for risk reduction and adaptation.
+Dangerously hot days are becoming more common as the planet warms, especially
+over land. This study examines how the hottest daytime temperature each year
+(the single hottest day at a given location, denoted $T_{DX}$) changes in
+simulations from 23 global climate models. We analyse a moderate emissions
+pathway (SSP2-4.5) and an experiment where carbon dioxide is abruptly
+quadrupled. Across these simulations, the most intense hot days over tropical
+land warm faster than the average land temperature and faster than related
+daily-mean measures. In other words, the extremes strengthen more than the
+background climate.
+
+When we compare the models to observations from the Berkeley Earth dataset,
+some reproduce the observed pattern of extreme heat reasonably well, while
+others show large warm biases and weaker spatial agreement, particularly in
+tropical and dry regions. We also track where the hottest land temperature on
+Earth occurs each year. Over time, record-setting heat becomes increasingly
+concentrated in regions such as South Asia, East Africa, and the Middle East.
+Models with similar overall warming, however, can still produce very different
+patterns and frequencies of record-breaking heat. This means that mean warming
+alone is not enough to identify where the most dangerous extremes will occur,
+which is critical for planning adaptation and protecting vulnerable
+communities.
 
 ---
 

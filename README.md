@@ -16,9 +16,9 @@ Research Letters._**  (prep)
 Extreme land surface temperatures threaten health, infrastructure, and
 ecosystems. Using the annual maximum of daily maximum temperature ($T_{DX}$)
 from 23 CMIP6 models, we examine how hot extremes evolve under SSP2-4.5 and
-abrupt 4$\times$CO$_2$ forcing, and how well models reproduce observed
+abrupt 4xCO_2 forcing, and how well models reproduce observed
 patterns. In both transient and equilibrium simulations, indices that emphasise
-hotter conditions---especially $T_{DX}$---warm more strongly than tropical-mean
+hotter conditions---especially $T_{DX}$ ---warm more strongly than tropical-mean
 land temperature, indicating intensification of extremes relative to the mean
 state.
 
@@ -72,7 +72,7 @@ communities.
 Data
 
 This study uses:
-CMIP6 daily maximum temperature 24 global mean (global mean), (tas) from 21 models, 17 models (tasmax)
+CMIP6 daily maximum temperature 21 global mean (global mean), (tas) from 21 models, 17 models (tasmax)
 → Earth System Grid Federation (ESGF)
 Berkeley Earth observational dataset
 → Berkeley Earth Data

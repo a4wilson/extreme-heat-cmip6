@@ -44,8 +44,6 @@ Figure 3 maps the **locations of the most extreme temperatures** and highlights 
   - **intensify in place** (same locations, higher extremes), and/or
   - **expand/shift** (new areas joining the hottest tail).
 
-**Why it matters for the rest of the repo**
-This spatial perspective helps explain the global scaling results (Fig. 2): the global increase in “extreme hot days” is strongly influenced by a subset of land regions that consistently sit in the upper tail of the temperature distribution and experience the largest increases in extreme heat.
 ---
 
 ## Supplementary figures & tables

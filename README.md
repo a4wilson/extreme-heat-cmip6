@@ -8,51 +8,20 @@
 ## 📖 Overview
 This repository contains the code and analysis supporting the article:
 
-> **Wilson, A., Lutsko, N., & Miller, A. (2025). Projections of Earth’s Hottest Surface Temperatures in
+> **Wilson, A., Lutsko, N., & Miller, A. (2026). Projections of Earth’s Hottest Surface Temperatures in
 CMIP6._Geophysical 
 Research Letters._**  (prep)
 
-### Description
-Extreme land surface temperatures threaten health, infrastructure, and
-ecosystems. Using the annual maximum of daily maximum temperature ($T_{DX}$)
-from 23 CMIP6 models, we examine how hot extremes evolve under SSP2-4.5 and
-abrupt 4xCO_2 forcing, and how well models reproduce observed
-patterns. In both transient and equilibrium simulations, indices that emphasise
-hotter conditions---especially $T_{DX}$ ---warm more strongly than tropical-mean
-land temperature, indicating intensification of extremes relative to the mean
-state.
+## Project description
 
-Comparing historical $T_{DX}$ to Berkeley Earth over land, we find substantial
-inter-model spread in spatial bias, RMSE, and pattern correlation, with the
-largest errors in tropical and semi-arid regions. We also track the location
-and recurrence of the hottest land grid cell each year. Record-setting heat
-becomes increasingly concentrated over South Asia, East Africa, and the Middle
-East, while models with similar mean warming show diverse record frequencies.
-This underscores the need to evaluate extremes explicitly, rather than relying
-on mean warming alone.
+Extreme land surface temperatures pose growing risks to human health, infrastructure, and ecosystems. This repository analyzes CMIP6 model simulations (historical, SSP2-4.5, and abrupt 4×CO₂) to understand how the hottest land temperatures evolve with warming and where the most extreme heat occurs. We compare temperature-change metrics that weight the warm tail more strongly to mean-temperature measures, showing that hot-tail indices amplify relative to the mean state in both transient and equilibrium responses. To connect warming with impacts, we also quantify the global frequency of extremely hot conditions by counting worldwide land-days exceeding 40°C each year and fitting a Poisson generalized linear model (GLM) to estimate how these extremes scale with global-mean warming. Finally, we map and track the location of the most extreme land temperatures through time to identify persistent and emerging hotspot regions and to assess why extreme outcomes cannot be inferred from mean warming alone.
 
-### Plain Language Summary
-Dangerously hot days are becoming more common as the planet warms, especially
-over land. This study examines how the hottest daytime temperature each year
-(the single hottest day at a given location, denoted $T_{DX}$) changes in
-simulations from 23 global climate models. We analyse a moderate emissions
-pathway (SSP2-4.5) and an experiment where carbon dioxide is abruptly
-quadrupled. Across these simulations, the most intense hot days over tropical
-land warm faster than the average land temperature and faster than related
-daily-mean measures. In other words, the extremes strengthen more than the
-background climate.
+## Plain Language Summary
 
-When we compare the models to observations from the Berkeley Earth dataset,
-some reproduce the observed pattern of extreme heat reasonably well, while
-others show large warm biases and weaker spatial agreement, particularly in
-tropical and dry regions. We also track where the hottest land temperature on
-Earth occurs each year. Over time, record-setting heat becomes increasingly
-concentrated in regions such as South Asia, East Africa, and the Middle East.
-Models with similar overall warming, however, can still produce very different
-patterns and frequencies of record-breaking heat. This means that mean warming
-alone is not enough to identify where the most dangerous extremes will occur,
-which is critical for planning adaptation and protecting vulnerable
-communities.
+Dangerously hot days are becoming more common as the planet warms, especially over land. This project uses simulations from many global climate models to study the most extreme heat, focusing on (1) how the hottest land temperatures change as the world warms and (2) where on Earth the most extreme heat tends to occur. We analyze a moderate future-emissions pathway (SSP2-4.5) and an idealized experiment where carbon dioxide is abruptly quadrupled, which helps separate short-term from long-term responses.
+
+Across models, the hottest conditions generally increase faster than average temperatures, meaning extreme heat intensifies more than the background climate. To summarize how often very hot conditions occur worldwide, we count how many land areas exceed 40°C each year and fit a statistical model to relate that count to global warming. The multi-model relationship indicates a large increase in the frequency of ≥40°C conditions with each additional degree of warming. We also track the geographic hotspots where the most extreme land temperatures occur, highlighting regions that repeatedly dominate the hottest end of the global distribution. Importantly, models that show similar average warming can still produce very different extreme-heat patterns and hotspot behavior. This is why planning for heat risk requires analyzing extremes directly, not just changes in global mean temperature.
+
 
 ---
 

@@ -1,150 +1,81 @@
-# Extreme hot days vs global warming (CMIP6)
+# Projections of Earth’s Hottest Land Temperatures in CMIP6
 
-This repository contains scripts and outputs used to quantify how the **frequency of extreme hot days** (e.g., **global land-days ≥ 40 °C per year**) scales with **global-mean warming** in CMIP6 models, and how that scaling relates to different temperature-change metrics (transient vs equilibrium warming; land vs ocean amplification; percentile-dependent warming).
+This repository contains scripts and outputs used to evaluate and project **Earth’s hottest near-surface air temperatures over land** using **CMIP6** models and **Berkeley Earth** observations. The analysis focuses on (i) how well models reproduce the **spatial pattern of extreme land heat** in the historical period, (ii) how **tropical land extremes amplify** relative to mean warming under **SSP2-4.5** and **abrupt-4×CO₂**, (iii) where the **annual global land maximum** occurs (hotspot persistence), and (iv) how often future climate exceeds a **fixed historical “record-like”** hottest-land benchmark.
 
 ## Scientific goals
 
-1. **Track warming over time** under SSP2-4.5 using multiple global temperature-change metrics (Fig. 1a).
-2. Compare **transient warming rates** (K/decade) across temperature metrics (Fig. 1b).
-3. Compare **equilibrium warming** under **abrupt 4×CO₂** across temperature metrics (Fig. 1c).
-4. Compute the **model spread** in the frequency of **≥40 °C land-days** for historical and future periods (Fig. 2a).
-5. Fit a statistical relationship between **≥40 °C land-day frequency** and **global-mean annual warming ΔT**, summarized with a **Poisson GLM** and multi-model spread (Fig. 2b; Sup. Fig. GLM; Sup. Fig. per-model fits).
-6. Diagnose how warming depends on the **temperature percentile** and differs over **land vs ocean in the tropics (20°S–20°N)**, and quantify the resulting **percentile-dependent amplification** (Fig. 3).
+1. **Historical fidelity:** Evaluate CMIP6 ability to simulate the observed spatial pattern of extreme land heat using Berkeley Earth.
+2. **Tail amplification:** Quantify whether hottest-day indices over tropical land warm faster than tropical land-mean temperature under SSP2-4.5 and abrupt-4×CO₂.
+3. **Hotspot geography:** Diagnose where the **annual global land maximum of tasmax** occurs and how persistent those regions are historically and in projections.
+4. **Record-like exceedance:** Define a fixed historical benchmark for the **annual hottest-land temperature** and estimate how exceedance likelihood scales with tropical land warming using a pooled logistic model.
 
-> **Note on temperature metrics:** The repository uses three temperature-change definitions (e.g., `T_TL`, `T_DM`, `T_DX`). These correspond to the temperature indices used in the figures and scripts. See `docs/metrics.md` (or the relevant script header) for precise definitions and spatial masking.
+## Core metrics and indices
 
----
+### Historical evaluation metric
+- **p99(tasmax)**: climatological 99th percentile of daily maximum near-surface air temperature over land (1980–2014), computed on each model grid and regridded to Berkeley Earth for pattern comparisons.
 
+### Tropical land indices (45°S–45°N land)
+- **T_TL**: tropical land-mean near-surface temperature (annual mean of tas).
+- **T_DM**: daily-mean temperature on the hottest day each year (annual max of daily tas).
+- **T_DX**: annual maximum daily-maximum temperature (annual max of daily tasmax).
 
----
+### Hottest-land index
+- **T\*(y)**: annual hottest-land temperature, defined as the annual maximum of the daily land maximum of tasmax over 45°S–45°N land.
 
-## What’s in the figures
+## What’s in the main figures
 
-### Figure 1 — Temperature-change metrics (SSP2-4.5 + abrupt 4×CO₂)
-- **(a) Temperature change over time:** multi-model mean warming evolution under SSP2-4.5 for three temperature-change metrics.
-- **(b) Transient warming trends:** distribution of warming rates (K/decade) across models for each metric.
-- **(c) Equilibrium warming (abrupt 4×CO₂):** distribution of the long-term warming response (K) for each metric.
+### Figure 1 — Observed and modeled spatial patterns of extreme land heat + hotspot frequency
+- **Left column:** Maps of **p99(tasmax)** (1980–2014) for Berkeley Earth and example CMIP6 models (e.g., a high-skill and a biased model).
+- **Right column:** **Hotspot-frequency maps**: for each year, the single land grid cell attaining the **global land maximum** of annual tasmax is identified; counts across years show where record-setting heat concentrates historically and under SSP2-4.5 (2015–2100).
 
-### Figure 2 — Extreme hot-day frequency and its scaling with warming
-- **(a) Model spread of ≥40 °C land-days:** distribution of **global land-days ≥40 °C per year** across historical and future time windows (e.g., 1980–2014, 2040–2059, 2081–2100).
-- **(b) Frequency vs warming:** relationship between annual extreme-day counts and **global-mean annual warming ΔT**, shown as a multi-model mean fit and model spread.
+### Figure 2 — Tail amplification of tropical land extremes
+Multi-model comparisons for SSP2-4.5 (2015–2100) and abrupt-4×CO₂:
+- **(a) Time series:** anomalies relative to a reference baseline (e.g., 2005–2014), shown for **T_TL**, **T_DM**, and **T_DX**.
+- **(b) Transient trends:** per-model warming trends (°C/decade) over 2015–2100.
+- **(c) Equilibrium warming:** abrupt-4×CO₂ response relative to piControl (late-time mean difference).
 
-### Figure 3 — Where the most extreme temperatures occur (spatial hotspots)
+### Figure 3 — Fixed-threshold “record-like” exceedance of the hottest-land benchmark
+- **(a) Model spread** in the annual hottest-land temperature **T\*** across time windows.
+- **(b) Exceedance probability** for surpassing a fixed historical benchmark  
+  **T\*_hist = max(T\*(y)) over 1980–2014**,  
+  modeled as a function of tropical land warming using a pooled ridge-regularized logistic regression.
+  The scaling is summarized as an **odds ratio per +1°C** of tropical land warming.
 
-Figure 3 maps the **locations of the most extreme temperatures** and highlights the regions that dominate the warm tail of the land temperature distribution. Rather than focusing on global-mean relationships, this figure answers: **where on Earth do the hottest extremes occur, and where do they concentrate as climate warms?**
+## Supplementary figures and tables (typical contents)
 
-**What is plotted**
-- Spatial maps of extreme-temperature characteristics (e.g., annual maximum daily maximum temperature, TXx, or the upper-percentile daily maximum such as the 99th percentile).
-- Hotspot regions are identified by the highest values of the warm-tail metric over land.
-
-**How to interpret**
-- Persistent hotspots tend to appear over **subtropical deserts and arid/semi-arid regions** where clear skies and low soil moisture favor very high surface temperatures.
-- Regions with strong land–atmosphere coupling (soil moisture limitations) can show especially high extremes because reduced evaporative cooling allows more energy to go into sensible heating.
-- If the figure includes a warming or future period comparison, it can show whether hotspots:
-  - **intensify in place** (same locations, higher extremes), and/or
-  - **expand/shift** (new areas joining the hottest tail).
-
----
-
-## Supplementary figures & tables
-
-### Supplementary Figure S1 — GLM summary: extreme hot days vs warming (binned medians + Poisson fit)
-This figure summarizes the relationship between **global land-days above a hot threshold** (e.g., ≥40 °C per year) and **global-mean annual warming ΔT** using:
-- Year-by-year points (individual model-years),
-- Binned medians (with 10–90% spread across models), and
-- A **Poisson GLM** that estimates the multiplicative increase in extreme-day frequency per +1 °C warming (reported in the legend).
-
-**Purpose:** provides a compact, model-aggregated estimate of scaling and its uncertainty/spread across models.
-
----
-
-### Supplementary Figure S2 — Per-model fits: model-by-model scaling of extreme hot days with ΔT
-This multi-panel figure shows the same relationship as S1 but **separately for each CMIP6 model**, typically including:
-- Scatter of annual extreme-day counts vs ΔT,
-- A fitted curve (often the GLM mean),
-- Binned summaries or uncertainty bars.
-
-**Purpose:** highlights inter-model differences in curvature/slope and identifies models that are outliers (e.g., steeper scaling or nonlinearity at high warming).
-
----
-
-### Supplementary Figure S3 — Percentile-dependent warming (land vs ocean) in the tropics (20°S–20°N)
-This figure diagnoses how warming depends on the **temperature percentile** and differs over **land vs ocean**, typically shown as:
-- (a) ΔTˣ across percentiles of daily temperature (multi-model mean ± IQR),
-- (b) a scaling factor Sₓ = ΔTˣ / ΔT indicating whether the warm tail warms faster than the mean.
-
-**Purpose:** provides a mechanistic/statistical explanation for why extremes can increase faster than global-mean warming, especially over land.
-
----
-
-### Supplementary Table S1 — Model inventory and experiment availability
-A table listing CMIP6 models and whether each model includes:
-- Historical
-- SSP2-4.5
-- Abrupt 4×CO₂
-- (Optional) “core ensemble” membership
-
-**Purpose:** documents the exact model set used in each analysis component and ensures reproducibility.
-
----
-
-### Supplementary Table S2 — Additional preprocessing/selection details (if included)
-If present, this table can summarize key methodological choices, such as:
-- Reference period used for ΔT,
-- Land/ocean masking and latitude bands,
-- Regridding target grid,
-- Threshold definition (≥40 °C) and how “land-days” are counted,
-- Any filtering of duplicate downloads / duplicate ensemble members.
-
-**Purpose:** makes technical setup easy to audit and replicate.
-
-
-## Model inventory
-
-The CMIP6 models used here include those with combinations of:
-- **Historical**
-- **SSP2-4.5**
-- **Abrupt 4×CO₂**
-- (Optionally) a “core ensemble” designation
-
-See `tables/` for the model list and availability by experiment (example shown in the supplement model-inventory table).
-
----
+- **Table S1:** Model inventory and experiment availability (historical, SSP2-4.5, abrupt-4×CO₂, piControl; plus index availability).
+- **Table S2:** Historical skill metrics for p99(tasmax): **Bias**, **cRMSE**, and **spatial R²**.
+- **Fig S1:** Per-model trajectories/trends for T_TL, T_DM, and T_DX under SSP2-4.5.
+- **Fig S2–S3:** Hotspot-frequency maps for each model (historical and SSP2-4.5).
+- **Fig S4:** “Stamp” panels of p99(tasmax) and bias maps across the ensemble.
+- **Fig S5:** Composite model-skill summary/ranking (if used).
+- **Fig S6:** Percentile-dependent warming / amplification (e.g., S_x = ΔT^x / ΔT), optionally separated by land vs ocean.
 
 ## Workflow overview
 
-Typical pipeline:
+1. **Preprocess daily fields**
+   - Load tasmax (and tas where needed), harmonize calendars/time axis, apply land masks and latitude bands.
+   - Regrid model fields to the Berkeley Earth grid for spatial pattern metrics.
 
-1. **Preprocess** daily temperature fields  
-   - harmonize calendars/time axis (if needed)  
-   - regrid to a common grid (if needed)  
-   - apply land/ocean masks and latitude bands (e.g., tropics 20°S–20°N)  
-   - compute annual metrics and percentiles as required
+2. **Historical evaluation**
+   - Compute p99(tasmax) over 1980–2014.
+   - Compute spatial **Bias**, **cRMSE**, and **R²** vs Berkeley Earth.
 
-2. **Compute warming indices**  
-   - annual global-mean ΔT (baseline relative to a reference period)  
-   - transient trends (K/decade) over a defined window  
-   - equilibrium response for abrupt 4×CO₂ (e.g., late vs early or relative to baseline)
+3. **Tropical land indices**
+   - Compute T_TL, T_DM, and T_DX annually.
+   - Compare SSP2-4.5 trends (2015–2100) and abrupt-4×CO₂ equilibrium responses.
 
-3. **Compute extremes**  
-   - count global land-days ≥40 °C per year (or other thresholds)  
-   - aggregate across models/ensembles and time windows (e.g., 1980–2014, 2040–2059, 2081–2100)
+4. **Hotspot-frequency maps**
+   - For each year, identify the grid cell with the global land maximum of annual tasmax.
+   - Count frequency across years for historical and SSP2-4.5.
 
-4. **Fit scaling models**  
-   - Poisson GLM (or other count model) linking extreme-day frequency to ΔT  
-   - summarize scaling as multiplicative change per +1 °C (e.g., ×1.5–×1.6 per °C)
-
-5. **Make figures & tables**  
-   - main figures in `figures/main/`  
-   - supplement in `figures/supplement/` and `tables/`
-
----
+5. **Record-like exceedance**
+   - Define T\*_hist from 1980–2014 and annual exceedance indicator I(y).
+   - Fit pooled ridge-logit scaling vs tropical land warming; summarize as odds ratio per °C.
 
 ## Reproducibility
 
 ### Environment
-Use one of the following approaches:
-
 **Conda**
 ```bash
 conda env create -f environment.yml

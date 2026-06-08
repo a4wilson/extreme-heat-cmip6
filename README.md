@@ -1,215 +1,107 @@
-# Projections of Earth’s Hottest Land Temperatures in CMIP6
+# Projections of Earth's Hottest Surface Temperatures in CMIP6
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17009316.svg)](https://doi.org/10.5281/zenodo.17009316)
+This repository contains analysis code, figures, and supporting material for a study of Earth's hottest near-surface land temperatures in observations and CMIP6 climate model simulations. The project focuses on the upper tail of land heat extremes, including where the hottest land temperatures occur, how well models reproduce historical extreme-heat patterns, and how record-like hottest-land events change under future warming.
 
----
+The analysis combines Berkeley Earth observations with CMIP6 historical, SSP2-4.5, and abrupt-4xCO2 simulations. Historical model fidelity is evaluated using the spatial pattern of the 99th percentile of daily maximum temperature over land, while future changes are assessed using tropical land warming, annual hottest-day metrics, hotspot-frequency maps, and fixed-threshold exceedance probabilities.
 
-## 📖 Overview
-This repository contains code and analysis supporting the GRL manuscript:
+## Project overview
 
-> **Wilson, A., Lutsko, N., & Miller, A. (2026). Projections of Earth’s Hottest Land Temperatures in CMIP6. _Geophysical Research Letters_ (in prep).**
+Extreme land heat affects human health, infrastructure, agriculture, ecosystems, and energy demand. Rather than focusing only on mean temperature change, this project asks how the most extreme land temperatures respond as the climate warms.
 
-The project evaluates how well CMIP6 models reproduce the **observed spatial pattern of extreme land heat** and how the **hottest land temperatures** change under warming in both **transient (SSP2-4.5)** and **equilibrium (abrupt-4×CO₂)** experiments.
+The central questions are whether CMIP6 models reproduce the observed geography of extreme heat, whether the hottest land temperatures warm faster than the tropical land mean, and whether the locations of record-setting heat remain concentrated in historically hot subtropical dry regions.
 
----
+## Data sources
 
-## 🔥 Project description
+This project uses:
 
-Extreme land heat threatens health, infrastructure, and ecosystems worldwide. Here we use CMIP6 simulations (historical, SSP2-4.5, abrupt-4×CO₂) together with **Berkeley Earth** observations to study:
+- Berkeley Earth daily temperature observations for historical evaluation.
+- CMIP6 historical simulations for model-observation comparison.
+- CMIP6 SSP2-4.5 simulations for transient 21st-century projections.
+- CMIP6 abrupt-4xCO2 simulations for idealized equilibrium-like warming responses.
 
-1. **Historical model fidelity for extremes**  
-   We evaluate each model’s ability to reproduce the **climatological 99th percentile of daily maximum temperature** over land, using **Bias**, **centered RMSE (cRMSE)**, and **spatial R²** computed on the Berkeley Earth grid.
+The main historical evaluation period is 1980-2014. SSP2-4.5 projections are analyzed through 2100, with emphasis on changes relative to a 2005-2014 baseline. The analysis includes 21 CMIP6 models for the primary hottest-day metric, with sample size varying by diagnostic depending on available variables and experiments.
 
-2. **Tail amplification over tropical land**  
-   We compare mean and hottest-day warming using three annual indices over tropical land (45°S–45°N):
-   - **T_TL**: tropical land-mean temperature (annual mean of `tas`)
-   - **T_DM**: daily-mean temperature on the hottest day each year (annual max of daily `tas`)
-   - **T_DX**: annual maximum daily-maximum temperature (annual max of daily `tasmax`)
+## Key temperature metrics
 
-   Across models, **T_DM** and **T_DX** typically warm faster than **T_TL** in SSP2-4.5 trends and abrupt-4×CO₂ equilibrium responses.
+The analysis uses three annual tropical land indices over 45°S-45°N land:
 
-3. **Geography of record-setting heat (hotspot persistence)**  
-   Each year, we identify the single land grid cell attaining the **global land maximum** of annual `tasmax` and map its **hotspot frequency**. This highlights the regions that most often dominate the warm tail and whether hotspots intensify in place or broaden/shift.
+### `T_TL`
 
-4. **Record-like exceedance likelihood under warming**  
-   We define the annual hottest-land temperature **T\*(y)** and a fixed historical benchmark
-   **T\*_hist = max(T\*(y)) over 1980–2014**. We then quantify how exceedance likelihood scales with tropical land warming using a pooled, ridge-regularized logistic regression, summarized as an **odds ratio per +1°C**.
+Tropical land-mean temperature, calculated from annual mean near-surface air temperature.
 
----
+### `T_DM`
 
-## 🧾 Plain Language Summary
+Daily-mean temperature on the hottest day of each year, calculated from the annual maximum of daily mean near-surface air temperature.
 
-Dangerously hot days are becoming more common as the planet warms—especially over land. This project uses many CMIP6 climate models to study the most extreme land heat, focusing on (1) how the hottest land temperatures change as the climate warms and (2) where on Earth these hottest conditions tend to occur. We analyze a moderate future-emissions pathway (SSP2-4.5) and an idealized experiment where carbon dioxide is abruptly quadrupled, which helps separate short-term from long-term responses.
+### `T_DX`
 
-Across models, the hottest-day temperatures over tropical land increase faster than tropical-average land temperature. We also test how well models reproduce the observed pattern of extreme land heat using Berkeley Earth observations. Finally, we track where the single hottest land grid cell occurs each year and show that record-setting heat is strongly concentrated in subtropical arid and semi-arid regions. These results show that average warming alone cannot tell us where the most dangerous heat will occur or how often record-like extremes will happen there.
+Annual maximum daily-maximum temperature, calculated from daily maximum near-surface air temperature. This is the main hottest-day metric used to track Earth's most extreme land heat.
 
----
+## Historical model evaluation
 
-## 🖼️ Figures and tables
+Historical fidelity is assessed by comparing the modeled and observed spatial pattern of the 99th percentile of daily maximum temperature, `p99(Tmax)`, over land.
 
-- **Table 1:** Historical model skill for extreme land heat (Bias, cRMSE, spatial R²) comparing **p99(tasmax)** with Berkeley Earth (1980–2014).
-- **Figure 1:** Spatial pattern of **p99(tasmax)** and **hotspot-frequency maps** for the annual global land maximum.
-- **Figure 2:** Transient and equilibrium warming for **T_TL**, **T_DM**, and **T_DX** (SSP2-4.5 + abrupt-4×CO₂).
-- **Figure 3:** Fixed-threshold **record-like exceedance** of **T\*_hist** and its scaling with tropical land warming (ridge-logit pooled fit).
+Model skill is summarized with:
 
-Supporting figures include per-model “stamp” plots of p99/bias, hotspot-frequency maps across the ensemble, and (optionally) percentile-dependent warming diagnostics.
+- Mean bias
+- Centered root-mean-square error
+- Spatial R²
 
----
+The model-observation comparison shows that many CMIP6 models capture the broad geography of historical extreme heat, especially the concentration of high-temperature extremes in subtropical arid and semi-arid regions. However, some models show substantial warm or cold biases and can misplace the hottest regions.
 
-## 📂 Repository structure
+## Hotspot-frequency analysis
 
-# Projections of Earth’s Hottest Land Temperatures in CMIP6
+For each year, the analysis identifies the single land grid cell with the highest annual `T_DX`. Repeating this across years produces hotspot-frequency maps showing how often different regions host the annual hottest land temperature.
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17009316.svg)](https://doi.org/10.5281/zenodo.17009316)
+The historical and future hotspot maps show strong spatial persistence. The most frequent hotspots occur in subtropical dry regions, especially the Middle East, North Africa, the Arabian Peninsula, South Asia, and Australia. In future SSP2-4.5 simulations, these hotspots generally intensify and can broaden, but the dominant record-setting regions remain geographically concentrated.
 
----
+## Warming of tropical land extremes
 
-## 📖 Overview
-This repository contains code and analysis supporting the GRL manuscript:
+Under SSP2-4.5, tropical land-mean temperature increases steadily through the 21st century. The hottest-day metrics warm faster than the tropical land mean.
 
-> **Wilson, A., Lutsko, N., & Miller, A. (2026). Projections of Earth’s Hottest Land Temperatures in CMIP6. _Geophysical Research Letters_ (in prep).**
+Across the model ensemble:
 
-The project evaluates how well CMIP6 models reproduce the **observed spatial pattern of extreme land heat** and how the **hottest land temperatures** change under warming in both **transient (SSP2-4.5)** and **equilibrium (abrupt-4×CO₂)** experiments.
+- `T_TL` warms more slowly than the hottest-day metrics.
+- `T_DM` and `T_DX` warm approximately 30-40% faster than `T_TL`.
+- This amplified warming appears in both transient SSP2-4.5 trends and late-period abrupt-4xCO2 responses.
 
----
+This indicates that upper-tail land heat intensifies faster than the background tropical land climate.
 
-## 🔥 Project description
+## Hottest-land temperature benchmark
 
-Extreme land heat threatens health, infrastructure, and ecosystems worldwide. Here we use CMIP6 simulations (historical, SSP2-4.5, abrupt-4×CO₂) together with **Berkeley Earth** observations to study:
+The analysis defines an annual hottest-land temperature, `T*(y)`, as the maximum land `T_DX` in each year. A fixed historical benchmark is then defined as:
 
-1. **Historical model fidelity for extremes**  
-   We evaluate each model’s ability to reproduce the **climatological 99th percentile of daily maximum temperature** over land, using **Bias**, **centered RMSE (cRMSE)**, and **spatial R²** computed on the Berkeley Earth grid.
+`T*_hist = max(T*(y)) over 1980-2014`
 
-2. **Tail amplification over tropical land**  
-   We compare mean and hottest-day warming using three annual indices over tropical land (45°S–45°N):
-   - **T_TL**: tropical land-mean temperature (annual mean of `tas`)
-   - **T_DM**: daily-mean temperature on the hottest day each year (annual max of daily `tas`)
-   - **T_DX**: annual maximum daily-maximum temperature (annual max of daily `tasmax`)
+Future years are evaluated by whether annual `T*(y)` exceeds this historical benchmark.
 
-   Across models, **T_DM** and **T_DX** typically warm faster than **T_TL** in SSP2-4.5 trends and abrupt-4×CO₂ equilibrium responses.
+This fixed-threshold approach provides a record-like measure of how often the climate system produces annual land temperatures hotter than the late-20th-century maximum.
 
-3. **Geography of record-setting heat (hotspot persistence)**  
-   Each year, we identify the single land grid cell attaining the **global land maximum** of annual `tasmax` and map its **hotspot frequency**. This highlights the regions that most often dominate the warm tail and whether hotspots intensify in place or broaden/shift.
+## Exceedance likelihood
 
-4. **Record-like exceedance likelihood under warming**  
-   We define the annual hottest-land temperature **T\*(y)** and a fixed historical benchmark
-   **T\*_hist = max(T\*(y)) over 1980–2014**. We then quantify how exceedance likelihood scales with tropical land warming using a pooled, ridge-regularized logistic regression, summarized as an **odds ratio per +1°C**.
+The probability of exceeding the historical hottest-land benchmark increases with tropical land warming. A pooled ridge-regularized logistic regression relates exceedance likelihood to tropical land-mean warming.
 
----
+The multi-model mean fit indicates that exceedance odds rise by approximately 35% per 1°C of tropical land warming. Individual models vary, but most show increasing likelihood as tropical land warms.
 
-## 🧾 Plain Language Summary
+## Main findings
 
-Dangerously hot days are becoming more common as the planet warms—especially over land. This project uses many CMIP6 climate models to study the most extreme land heat, focusing on (1) how the hottest land temperatures change as the climate warms and (2) where on Earth these hottest conditions tend to occur. We analyze a moderate future-emissions pathway (SSP2-4.5) and an idealized experiment where carbon dioxide is abruptly quadrupled, which helps separate short-term from long-term responses.
+1. CMIP6 models generally reproduce the broad observed spatial pattern of historical extreme heat, though biases and regional placement errors remain.
 
-Across models, the hottest-day temperatures over tropical land increase faster than tropical-average land temperature. We also test how well models reproduce the observed pattern of extreme land heat using Berkeley Earth observations. Finally, we track where the single hottest land grid cell occurs each year and show that record-setting heat is strongly concentrated in subtropical arid and semi-arid regions. These results show that average warming alone cannot tell us where the most dangerous heat will occur or how often record-like extremes will happen there.
+2. The hottest tropical land metrics, `T_DM` and `T_DX`, warm faster than tropical land-mean temperature in both transient and abrupt-4xCO2 experiments.
 
----
+3. Annual hottest-land events remain concentrated in subtropical arid and semi-arid regions, especially the Middle East, North Africa, South Asia, and Australia.
 
-## 🖼️ Figures and tables
+4. The late-20th-century hottest-land benchmark is exceeded more often as tropical land warms.
 
-- **Table 1:** Historical model skill for extreme land heat (Bias, cRMSE, spatial R²) comparing **p99(tasmax)** with Berkeley Earth (1980–2014).
-- **Figure 1:** Spatial pattern of **p99(tasmax)** and **hotspot-frequency maps** for the annual global land maximum.
-- **Figure 2:** Transient and equilibrium warming for **T_TL**, **T_DM**, and **T_DX** (SSP2-4.5 + abrupt-4×CO₂).
-- **Figure 3:** Fixed-threshold **record-like exceedance** of **T\*_hist** and its scaling with tropical land warming (ridge-logit pooled fit).
+5. Mean warming alone does not fully determine where the most dangerous heat occurs or how often record-like extremes happen.
 
-Supporting figures include per-model “stamp” plots of p99/bias, hotspot-frequency maps across the ensemble, and (optionally) percentile-dependent warming diagnostics.
+## Repository contents
 
----
-
-## 📂 Repository structure
-# Projections of Earth’s Hottest Land Temperatures in CMIP6
-
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17009316.svg)](https://doi.org/10.5281/zenodo.17009316)
-
----
-
-## 📖 Overview
-This repository contains code and analysis supporting the GRL manuscript:
-
-> **Wilson, A., Lutsko, N., & Miller, A. (2026). Projections of Earth’s Hottest Land Temperatures in CMIP6. _Geophysical Research Letters_ (in prep).**
-
-The project evaluates how well CMIP6 models reproduce the **observed spatial pattern of extreme land heat** and how the **hottest land temperatures** change under warming in both **transient (SSP2-4.5)** and **equilibrium (abrupt-4×CO₂)** experiments.
-
----
-
-## 🔥 Project description
-
-Extreme land heat threatens health, infrastructure, and ecosystems worldwide. Here we use CMIP6 simulations (historical, SSP2-4.5, abrupt-4×CO₂) together with **Berkeley Earth** observations to study:
-
-1. **Historical model fidelity for extremes**  
-   We evaluate each model’s ability to reproduce the **climatological 99th percentile of daily maximum temperature** over land, using **Bias**, **centered RMSE (cRMSE)**, and **spatial R²** computed on the Berkeley Earth grid.
-
-2. **Tail amplification over tropical land**  
-   We compare mean and hottest-day warming using three annual indices over tropical land (45°S–45°N):
-   - **T_TL**: tropical land-mean temperature (annual mean of `tas`)
-   - **T_DM**: daily-mean temperature on the hottest day each year (annual max of daily `tas`)
-   - **T_DX**: annual maximum daily-maximum temperature (annual max of daily `tasmax`)
-
-   Across models, **T_DM** and **T_DX** typically warm faster than **T_TL** in SSP2-4.5 trends and abrupt-4×CO₂ equilibrium responses.
-
-3. **Geography of record-setting heat (hotspot persistence)**  
-   Each year, we identify the single land grid cell attaining the **global land maximum** of annual `tasmax` and map its **hotspot frequency**. This highlights the regions that most often dominate the warm tail and whether hotspots intensify in place or broaden/shift.
-
-4. **Record-like exceedance likelihood under warming**  
-   We define the annual hottest-land temperature **T\*(y)** and a fixed historical benchmark
-   **T\*_hist = max(T\*(y)) over 1980–2014**. We then quantify how exceedance likelihood scales with tropical land warming using a pooled, ridge-regularized logistic regression, summarized as an **odds ratio per +1°C**.
-
----
-
-## 🧾 Plain Language Summary
-
-Dangerously hot days are becoming more common as the planet warms—especially over land. This project uses many CMIP6 climate models to study the most extreme land heat, focusing on (1) how the hottest land temperatures change as the climate warms and (2) where on Earth these hottest conditions tend to occur. We analyze a moderate future-emissions pathway (SSP2-4.5) and an idealized experiment where carbon dioxide is abruptly quadrupled, which helps separate short-term from long-term responses.
-
-Across models, the hottest-day temperatures over tropical land increase faster than tropical-average land temperature. We also test how well models reproduce the observed pattern of extreme land heat using Berkeley Earth observations. Finally, we track where the single hottest land grid cell occurs each year and show that record-setting heat is strongly concentrated in subtropical arid and semi-arid regions. These results show that average warming alone cannot tell us where the most dangerous heat will occur or how often record-like extremes will happen there.
-
----
-
-## 🖼️ Figures and tables
-
-- **Table 1:** Historical model skill for extreme land heat (Bias, cRMSE, spatial R²) comparing **p99(tasmax)** with Berkeley Earth (1980–2014).
-- **Figure 1:** Spatial pattern of **p99(tasmax)** and **hotspot-frequency maps** for the annual global land maximum.
-- **Figure 2:** Transient and equilibrium warming for **T_TL**, **T_DM**, and **T_DX** (SSP2-4.5 + abrupt-4×CO₂).
-- **Figure 3:** Fixed-threshold **record-like exceedance** of **T\*_hist** and its scaling with tropical land warming (ridge-logit pooled fit).
-
-Supporting figures include per-model “stamp” plots of p99/bias, hotspot-frequency maps across the ensemble, and (optionally) percentile-dependent warming diagnostics.
-
----
-
-## 📂 Repository structure
-|--notebooks/ # Reproducible figure-generation notebooks
-├── scripts/ # Helper scripts for preprocessing, masking, regridding, metrics
-├── figures/ # Main and supplementary figures
-├── tables/ # Table outputs (e.g., model metrics)
-├── environment.yml # Conda environment with dependencies
-├── LICENSE
-└── README.md
-
-
----
-
-## 📦 Data sources
-
-This study uses publicly available datasets:
-
-- **CMIP6 model output (historical, SSP2-4.5, abrupt-4×CO₂, piControl)**  
-  Access via the **Earth System Grid Federation (ESGF)**.
-
-- **Berkeley Earth daily maximum near-surface air temperature (`tasmax`)**  
-  Used for historical evaluation of extreme land heat.
-
-- **ERA5 (optional / supporting)**  
-  Access via the **Copernicus Climate Data Store**.
-
-⚠️ Raw model/observational data are not hosted in this repository due to file size.
-Scripts and notebooks are provided to reproduce results after downloading the inputs.
-
----
-
-##  Reproducibility
-
-### Environment (Conda)
-```bash
-conda env create -f environment.yml
-conda activate <env-name>
-
-
+```text
+.
+├── data/                  # Processed or intermediate datasets
+├── notebooks/             # Analysis notebooks
+├── scripts/               # Reproducible analysis scripts
+├── figures/               # Manuscript and repository figures
+├── README.md              # Project overview
+└── environment.yml        # Computational environment, if available
